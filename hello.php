@@ -23,13 +23,19 @@ function hello_server_get_info() {
 // This just echoes the chosen line, we'll position it later
 function hello_server( $wp_admin_bar ) {
 	$serverInfo = hello_server_get_info();
-	$args = [
-	  'id' => 'lw_server_name',
+	$mainNode = [
+	  'id' => 'lw_hello_server',
 	  'title' => "Server: ".$serverInfo['hostname'],
-	  'meta' => ['title' => 'View the current server hostname.']
+	  'meta' => ['title' => 'View the current server hostname.', 'class' => 'menupop']
 
 	];
-	$wp_admin_bar->add_node( $args );
+	$wp_admin_bar->add_node( $mainNode );
+	$ipNode = [
+	  'id' => 'lw_server_ip',
+	  'title' => 'Server IP: '.$serverInfo['ip'],
+	  'parent' => 'lw_hello_server'
+	];
+	$wp_admin_bar->add_node( $ipNode );
 }
 
 // Now we set that function up to execute when the admin_notices action is called
