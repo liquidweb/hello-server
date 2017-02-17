@@ -11,9 +11,13 @@ This is just a plugin that tells you what server your WordPress is on. It's supe
 
 == Description ==
 
-Do you run your WordPress in a Cluster setup? Need to know what server you're request is being served from? Look no further.
+Do you run your WordPress in a Cluster setup?
+Need to know what server your request is served from?
+Don't want to have to dig in access logs to do it?
 
-This is just the plugin for you. Hello Server adds a node to the Toolbar that tells you what server your request was sent from!
+Look no further. This is just the plugin for you.
+
+Hello Server adds a node to the Toolbar that tells you what server your request was sent from! In the new Hello Server menu you'll find the current servers hostname and IP!
 
 == Frequently Asked Questions ==
 
