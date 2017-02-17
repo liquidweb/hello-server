@@ -30,15 +30,15 @@ function hello_server( $wp_admin_bar ) {
 
 	];
 	$hostNode = [
-		'id' => 'lw_hello_server',
-		'title' => "Server: ".$serverInfo['hostname'],
-		'meta' => ['title' => 'View the current server hostname.'],
-		'parent' => 'lw_hello_server'
+	  'id' => 'lw_host_server',
+	  'title' => "Hello, I'm: ".$serverInfo['hostname'],
+	  'meta' => ['title' => 'View the current server hostname.'],
+	  'parent' => 'lw_hello_server'
 	];
 	$ipNode = [
 	  'id' => 'lw_server_ip',
-	  'title' => 'Server IP: '.$serverInfo['ip'],
-		'meta' => ['title' => 'The current servers IP Address.'],
+	  'title' => 'My IP is: '.$serverInfo['ip'],
+	  'meta' => ['title' => 'The current servers IP Address.'],
 	  'parent' => 'lw_hello_server'
 	];
 	$wp_admin_bar->add_node( $mainNode );
