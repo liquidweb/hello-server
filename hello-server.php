@@ -1,7 +1,7 @@
 <?php
 /**
- * @package Hello_Dolly
- * @version 1.6
+ * @package Hello_Server
+ * @version 1.0a
  */
 /*
 Plugin Name: Hello Server
