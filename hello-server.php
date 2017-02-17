@@ -25,16 +25,24 @@ function hello_server( $wp_admin_bar ) {
 	$serverInfo = hello_server_get_info();
 	$mainNode = [
 	  'id' => 'lw_hello_server',
-	  'title' => "Server: ".$serverInfo['hostname'],
-	  'meta' => ['title' => 'View the current server hostname.', 'class' => 'menupop']
+	  'title' => "Hello, Server",
+	  'meta' => ['title' => 'View the current server info.', 'class' => 'menupop']
 
 	];
-	$wp_admin_bar->add_node( $mainNode );
+	$hostNode = [
+		'id' => 'lw_hello_server',
+		'title' => "Server: ".$serverInfo['hostname'],
+		'meta' => ['title' => 'View the current server hostname.']
+		'parent' => 'lw_hello_server'
+	];
 	$ipNode = [
 	  'id' => 'lw_server_ip',
 	  'title' => 'Server IP: '.$serverInfo['ip'],
+		'meta' => ['title' => 'The current servers IP Address.']
 	  'parent' => 'lw_hello_server'
 	];
+	$wp_admin_bar->add_node( $mainNode );
+	$wp_admin_bar->add_node( $hostNode );
 	$wp_admin_bar->add_node( $ipNode );
 }
 
