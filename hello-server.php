@@ -14,10 +14,21 @@ Author URI: https://github.com/liquidweb/hello-server
 
 function hello_server_get_info() {
 	$info = [
-	  'ip' => $_SERVER["SERVER_ADDR"],
+	  'ip' => get_server_ip(),
 	  'hostname' => gethostname()
 	];
 	return $info;
+}
+
+function get_server_ip() {
+	$serverIp =  $_SERVER["SERVER_ADDR"];
+	if ($serverIp === '127.0.0.1') {
+	  $resIp = getHostByName(getHostName());
+	  if (filter_var($ip, FILTER_VALIDATE_IP) === true) {
+		  return $resIp;
+	  }
+	}
+	return $serverIp;
 }
 
 // This just echoes the chosen line, we'll position it later
@@ -48,5 +59,3 @@ function hello_server( $wp_admin_bar ) {
 
 // Now we set that function up to execute when the admin_notices action is called
 add_action( 'admin_bar_menu', 'hello_server', 999 );
-
-?>
