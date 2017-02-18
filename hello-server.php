@@ -4,12 +4,12 @@
  * @version 1.0a
  */
 /*
-Plugin Name: Hello Server
-Plugin URI: https://wordpress.org/plugins/
+Plugin Name: Hello Server by Liquid Web
+Plugin URI: https://wordpress.org/plugins/hello-server
 Description: This is just a plugin that tells you what server your WordPress is on. It's super useful for when you run WordPress in a cluster.
-Author: Dan Pock (Liquid Web)
+Author: Dan Pock (Liquid Web) dpock@liquidweb.com
 Version: 1.0a
-Author URI: https://github.com/liquidweb/
+Author URI: https://github.com/liquidweb/hello-server
 */
 
 function hello_server_get_info() {
@@ -31,7 +31,7 @@ function hello_server( $wp_admin_bar ) {
 	];
 	$hostNode = [
 	  'id' => 'lw_host_server',
-	  'title' => "Hello, I'm: ".$serverInfo['hostname'],
+      'title' => "Hello, I'm: <span itemprop='server-name'>".$serverInfo['hostname'] . "</span>!",
 	  'meta' => ['title' => 'View the current server hostname.'],
 	  'parent' => 'lw_hello_server'
 	];

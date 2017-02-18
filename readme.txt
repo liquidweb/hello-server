@@ -1,5 +1,5 @@
-=== Hello Server ===
-Contributors: Dan Pock (Liquid Web)
+=== Hello Server by Liquid Web ===
+Contributors: Dan Pock (Liquid Web) dpock@gmail.com
 Tags: server info, hostname, cluster, clustering
 Requires at least: 3.0
 Tested up to: 4.6.1
