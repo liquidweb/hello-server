@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package Hello_Server
  * @version 1.0a
@@ -6,11 +7,49 @@
 /*
 Plugin Name: Hello Server by Liquid Web
 Plugin URI: https://wordpress.org/plugins/hello-server
+License:           GPL-2.0
+License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+Author: Dan Pock (Liquid Web)
+Author URI: https://www.liquidweb.com
 Description: This is just a plugin that tells you what server your WordPress is on. It's super useful for when you run WordPress in a cluster.
-Author: Dan Pock (Liquid Web) dpock@liquidweb.com
 Version: 1.0a
-Author URI: https://github.com/liquidweb/hello-server
 */
+
+/*  Copyright (c) 2017 Dan Pock (Liquid Web) <dpock@liquidweb.com>
+
+	All rights reserved.
+	Hello Server by Liquid Web is distributed under the GNU General Public License, Version 2,
+	June 1991. Copyright (C) 1989, 1991 Free Software Foundation, Inc., 51 Franklin
+	St, Fifth Floor, Boston, MA 02110, USA
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+	DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+	ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+	(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+	LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+	ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+	(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
+/**
+ * Hello Server by Liquid Web
+ *
+ * Say hello to your server and maybe it will say it back.
+ * With this WordPress plugin you can easily see what server your current
+ * web request was processed on. If you run your WordPress in a cluster style
+ * setup then this will simplify tracking server requests.
+ *
+ * PHP version 5.6-7.1
+ *
+ *
+ * @package Hello_Server
+ * @author     Dan Pock <dpock@liquidweb.com>
+ * @copyright  2017 Liquid Web
+ * @license    http://www.gnu.org/licenses/gpl-2.0.txt  GPL-2.0
+ * @link       https://github.com/liquidweb/hello-server
+ */
 
 function hello_server_get_info() {
 	$info = [
