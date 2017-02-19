@@ -62,8 +62,8 @@ function hello_server_get_info() {
 function get_server_ip() {
 	$serverIp =  $_SERVER["SERVER_ADDR"];
 	if ($serverIp === '127.0.0.1') {
-	  $resIp = getHostByName(getHostName());
-	  if (filter_var($ip, FILTER_VALIDATE_IP) === true) {
+	  $resIp = gethostbyname(gethostname());
+	  if (filter_var($resIp, FILTER_VALIDATE_IP) === true) {
 		  return $resIp;
 	  }
 	}
