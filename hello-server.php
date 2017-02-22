@@ -12,7 +12,7 @@ License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
 Author: Dan Pock (Liquid Web)
 Author URI: https://www.liquidweb.com
 Description: This is just a plugin that tells you what server your WordPress is on. It's super useful for when you run WordPress in a cluster.
-Version: 1.0a
+Version: 1.0.1
 */
 
 /*  Copyright (c) 2017 Dan Pock (Liquid Web) <dpock@liquidweb.com>
