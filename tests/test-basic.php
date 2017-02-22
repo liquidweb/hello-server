@@ -9,7 +9,7 @@ require_once(__DIR__ . '/../hello-server.php'); //path to the main plugin file
 /**
  * Sample test case.
  */
-class SampleTest extends WP_UnitTestCase {
+class BasicHelloTest extends WP_UnitTestCase {
 
     public $plugin_slug = 'hello-server';
 
