@@ -3,11 +3,11 @@ Contributors: Liquid Web, liquidwebdan
 Tags: server info, hostname, cluster, clustering
 Requires at least: 3.0
 Tested up to: 4.6.1
-Stable tag: 1.0a
+Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-This is just a plugin that tells you what server your WordPress is on. It's super useful for when you run WordPress in a cluster.
+This is a simple plugin that tells you what server your WordPress is on. It's super useful for when you run WordPress in a clustered environment.
 
 == Description ==
 
@@ -26,12 +26,14 @@ N/A
 == Installation ==
 
 Automated Install:
-* Go to plugins page in WordPress admin
-* Search for 'Hello Server'
-* Click 'Add to WordPress'
-* Activate plugin
+
+*   Go to plugins page in WordPress admin
+*   Search for 'Hello Server'
+*   Click 'Add to WordPress'
+*   Activate plugin
 
 Manual Install:
-* Download zip to WordPress plugins folder.
-* Extract zip contents
-* Activate plugin
+
+*   Download zip to WordPress plugins folder.
+*   Extract zip contents
+*   Activate plugin
