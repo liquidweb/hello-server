@@ -2,7 +2,7 @@
 
 /**
  * @package Hello_Server
- * @version 1.0a
+ * @version 1.0.1
  */
 /*
 Plugin Name: Hello Server by Liquid Web
