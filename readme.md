@@ -3,7 +3,7 @@ Contributors: Liquid Web, liquidwebdan
 Tags: server info, hostname, cluster, clustering
 Requires at least: 3.0
 Tested up to: 4.6.1
-Stable tag: 1.0.1
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
