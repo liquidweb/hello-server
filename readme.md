@@ -1,19 +1,19 @@
 # Hello Server by Liquid Web
-Contributors: Liquid Web, liquidwebdan
-Tags: server info, hostname, cluster, clustering
-Requires at least: 3.0
-Tested up to: 4.6.1
-Stable tag: 1.0.3
-License: GPLv2 or later
+Contributors: Liquid Web, liquidwebdan  
+Tags: server info, hostname, cluster, clustering  
+Requires at least: 3.0  
+Tested up to: 4.6.1  
+Stable tag: 1.0.3  
+License: GPLv2 or later  
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 This is a simple plugin that tells you what server your WordPress is on. It's super useful for when you run WordPress in a clustered environment.
 
 ## Description
 
-Do you run your WordPress in a Cluster setup?
-Need to know what server your request is served from?
-Don't want to have to dig in access logs to do it?
+Do you run your WordPress in a Cluster setup?  
+Need to know what server your request is served from?  
+Don't want to have to dig in access logs to do it?  
 
 Look no further. This is just the plugin for you.
 
