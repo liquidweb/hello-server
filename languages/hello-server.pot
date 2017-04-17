@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Hello Server by Liquid Web package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Hello Server by Liquid Web 1.0.3\n"
+"Project-Id-Version: Hello Server by Liquid Web\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/hello-server\n"
 "POT-Creation-Date: 2017-04-17 04:34:13+00:00\n"
 "MIME-Version: 1.0\n"
