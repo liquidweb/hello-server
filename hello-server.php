@@ -13,6 +13,8 @@ Author: Dan Pock (Liquid Web)
 Author URI: https://www.liquidweb.com
 Description: This is just a plugin that tells you what server your WordPress is on. It's super useful for when you run WordPress in a cluster.
 Version: 1.0.3
+Text Domain: hello-server
+Domain Path: /languages/
 */
 
 /*  Copyright (c) 2017 Dan Pock (Liquid Web) <dpock@liquidweb.com>
@@ -75,8 +77,8 @@ function hello_server( $wp_admin_bar ) {
 	$serverInfo = hello_server_get_info();
 	$mainNode = [
 	  'id' => 'lw_hello_server',
-	  'title' => "Hello, Server",
-	  'meta' => ['title' => 'View the current server info.', 'class' => 'menupop']
+	  'title' => __("Hello, Server", "hello-server"),
+	  'meta' => ['title' => __('View the current server info.', "hello-server"), 'class' => 'menupop']
 
 	];
 	$hostNode = [
@@ -98,3 +100,14 @@ function hello_server( $wp_admin_bar ) {
 
 // Now we set that function up to execute when the admin_notices action is called
 add_action( 'admin_bar_menu', 'hello_server', 999 );
+
+// Internationalization Support
+function load_plugins_textdomain()
+{
+	load_plugin_textdomain(
+		'hello-server',
+		false,
+		dirname(dirname(plugin_basename(__FILE__))) . '/languages/'
+	);
+}
+add_action('plugins_loaded', 'load_plugins_textdomain');
