@@ -53,3 +53,25 @@ Manual Install:
 *   Download zip to WordPress plugins folder.
 *   Extract zip contents
 *   Activate plugin
+
+## Changelog
+
+### 1.1.0 & 1.1.1
+
+*   Add support for l10n and i18n.
+*   Add multiple language translations.
+
+### 1.0.3
+
+*   Fix docs
+
+### 1.0.0 & 1.0.1
+
+*   Clean up all the things.
+*   Improve docs.
+*   Clean up all the things.
+*   First public releases.
+
+### 1.0a
+
+*   Initial version & POC
