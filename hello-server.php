@@ -2,7 +2,7 @@
 
 /**
  * @package Hello_Server
- * @version 1.0.3
+ * @version 1.1.1
  */
 /*
 Plugin Name: Hello Server by Liquid Web
@@ -12,7 +12,7 @@ License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
 Author: Dan Pock (Liquid Web)
 Author URI: https://www.liquidweb.com
 Description: This is just a plugin that tells you what server your WordPress is on. It's super useful for when you run WordPress in a cluster.
-Version: 1.0.3
+Version: 1.1.1
 Text Domain: hello-server
 Domain Path: /languages/
 */
