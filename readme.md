@@ -1,5 +1,5 @@
 # Hello Server by Liquid Web
-Contributors: Liquid Web, liquidwebdan
+Contributors: Liquid Web, liquidwebdan, liquidweb
 Tags: server info, hostname, cluster, clustering, multi-node, webnodes, web-nodes, multi-server
 Requires at least: 3.0
 Tested up to: 4.8.0
