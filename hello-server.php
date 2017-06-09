@@ -54,14 +54,14 @@ Domain Path: /languages/
  */
 
 function hello_server_get_info() {
-	$info = get_transient('hello_server_info_cache');
+	$info = get_transient('hello_server_info_cache_'.$_SERVER["SERVER_ADDR"]);
 	if (false === $info) {
 		// It wasn't there, so regenerate the data and save the transient
 		$info = [
 			'ip' => get_server_ip(),
 			'hostname' => gethostname()
 		];
-		set_transient('hello_server_info_cache', $info, 24 * HOUR_IN_SECONDS);
+		set_transient('hello_server_info_cache_'.$_SERVER["SERVER_ADDR"], $info, 24 * HOUR_IN_SECONDS);
 	}
 	return $info;
 }
