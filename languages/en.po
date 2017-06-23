@@ -4,81 +4,91 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Hello Server by Liquid Web 1.2.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/hello-server\n"
-"POT-Creation-Date: 2017-06-23 19:24:40+00:00\n"
+"POT-Creation-Date: 2017-06-23 15:26-0400\n"
+"PO-Revision-Date: 2017-06-23 15:29-0400\n"
+"Last-Translator: Andrew Norcross <andrew.norcross@gmail.com>\n"
+"Language-Team: \n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Generator: Poedit 1.8.6\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: hello-server.php:92
 msgid "unknown"
-msgstr ""
+msgstr "unknown"
 
 #: hello-server.php:212
 msgid "Hello Server"
-msgstr ""
+msgstr "Hello Server"
 
 #: hello-server.php:214
 msgid "View the current server info."
-msgstr ""
+msgstr "View the current server info."
 
 #: hello-server.php:224
 msgid "Hostname: "
-msgstr ""
+msgstr "Hostname:"
 
 #: hello-server.php:228
 msgid "View the current server hostname."
-msgstr ""
+msgstr "View the current server hostname."
 
 #: hello-server.php:238
 msgid "IP Address: "
-msgstr ""
+msgstr "IP Address:"
 
 #: hello-server.php:242
 msgid "View the current server IP address."
-msgstr ""
+msgstr "View the current server IP address."
 
 #: hello-server.php:252
 msgid "PHP Version: "
-msgstr ""
+msgstr "PHP Version:"
 
 #: hello-server.php:256
 msgid "View the current PHP version."
-msgstr ""
+msgstr "View the current PHP version."
 
 #: hello-server.php:266
 msgid "DB Version: "
-msgstr ""
+msgstr "DB Version:"
 
 #: hello-server.php:270
 msgid "View the current database version."
-msgstr ""
+msgstr "View the current database version."
 
 #: hello-server.php:280
 msgid "Software: "
-msgstr ""
+msgstr "Software:"
 
 #: hello-server.php:284
 msgid "View the current server software."
-msgstr ""
+msgstr "View the current server software."
+
 #. Plugin Name of the plugin/theme
 msgid "Hello Server by Liquid Web"
-msgstr ""
+msgstr "Hello Server by Liquid Web"
 
 #. Plugin URI of the plugin/theme
 msgid "https://wordpress.org/plugins/hello-server"
-msgstr ""
+msgstr "https://wordpress.org/plugins/hello-server"
 
 #. Description of the plugin/theme
-msgid "This is a simple plugin that tells you what server your WordPress is running on. It's super useful for when you run WordPress in a clustered, or mulit-server, environment."
+msgid ""
+"This is a simple plugin that tells you what server your WordPress is running "
+"on. It's super useful for when you run WordPress in a clustered, or mulit-"
+"server, environment."
 msgstr ""
+"This is a simple plugin that tells you what server your WordPress is running "
+"on. It's super useful for when you run WordPress in a clustered, or mulit-"
+"server, environment."
 
 #. Author of the plugin/theme
 msgid "Dan Pock (Liquid Web)"
-msgstr ""
+msgstr "Dan Pock (Liquid Web)"
 
 #. Author URI of the plugin/theme
 msgid "https://www.liquidweb.com"
-msgstr ""
+msgstr "https://www.liquidweb.com"
