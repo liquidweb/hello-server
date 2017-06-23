@@ -58,7 +58,7 @@
  * @return void
  */
 function lw_load_plugins_textdomain() {
-	load_plugin_textdomain( 'hello-server', false, dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/' );
+	load_plugin_textdomain( 'hello-server', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 }
 add_action( 'plugins_loaded', 'lw_load_plugins_textdomain' );
 
