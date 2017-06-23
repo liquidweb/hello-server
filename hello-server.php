@@ -79,11 +79,14 @@ function lw_hello_server_get_info() {
 
 	// If we don't want the cache'd version, delete the transient first.
 	if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-		wp_cache_delete( $cache_key );
+		delete_transient( $cache_key );
 	}
 
 	// It wasn't there, so regenerate the data and save the transient.
-	if ( false === $data = wp_cache_get( $cache_key )  ) {
+	if ( false === $data = get_transient( $cache_key )  ) {
+
+		// Call the global WPDB class to get our version.
+		global $wpdb;
 
 		// Get our software name with a fallback.
 		$svsoft = ! empty( $_SERVER['SERVER_SOFTWARE'] ) ? sanitize_text_field( wp_unslash( $_SERVER['SERVER_SOFTWARE'] ) ) : __( 'unknown', 'hello-server' );
@@ -97,10 +100,11 @@ function lw_hello_server_get_info() {
 			'software'  => $svsoft,
 			'hostname'  => gethostname(),
 			'phpvers'   => esc_attr( $phpver ),
+			'dbvers'    => $wpdb->db_version(),
 		);
 
 		// Store our data in the transient.
-		wp_cache_set( $cache_key, $data, '', DAY_IN_SECONDS );
+		set_transient( $cache_key, $data, '', DAY_IN_SECONDS );
 	}
 
 	// Return our array of data.
@@ -245,7 +249,7 @@ function lw_load_hello_server( WP_Admin_Bar $wp_admin_bar ) {
 	$wp_admin_bar->add_node(
 		array(
 			'id'        => 'lw-php-version',
-			'title'     => '<span class="ab-lw-inner-label">' . __( 'PHP Version: ', 'hello-server' ) . '</span><span class="ab-lw-inner-data" itemprop="php-version">' . esc_html( $info['phpvers'] ) . '</span>',
+			'title'     => '<span class="ab-lw-inner-label">' . esc_html__( 'PHP Version: ', 'hello-server' ) . '</span><span class="ab-lw-inner-data" itemprop="php-version">' . esc_html( $info['phpvers'] ) . '</span>',
 			'position'  => 2,
 			'parent'    => 'lw-hello-server',
 			'meta'      => array(
@@ -255,12 +259,26 @@ function lw_load_hello_server( WP_Admin_Bar $wp_admin_bar ) {
 		)
 	);
 
+	// Add the database version info.
+	$wp_admin_bar->add_node(
+		array(
+			'id'        => 'lw-database-version',
+			'title'     => '<span class="ab-lw-inner-label">' . esc_html__( 'DB Version: ', 'hello-server' ) . '</span><span class="ab-lw-inner-data" itemprop="database-version">' . esc_html( $info['dbvers'] ) . '</span>',
+			'position'  => 3,
+			'parent'    => 'lw-hello-server',
+			'meta'      => array(
+				'title' => esc_html__( 'View the current database version.', 'hello-server' ),
+				'class' => 'lw-admin-child-menu',
+			),
+		)
+	);
+
 	// Add the server software info.
 	$wp_admin_bar->add_node(
 		array(
 			'id'        => 'lw-server-software',
-			'title'     => '<span class="ab-lw-inner-label">' . __( 'Software: ', 'hello-server' ) . '</span><span class="ab-lw-inner-data" itemprop="server-software">' . esc_html( $info['software'] ) . '</span>',
-			'position'  => 2,
+			'title'     => '<span class="ab-lw-inner-label">' . esc_html__( 'Software: ', 'hello-server' ) . '</span><span class="ab-lw-inner-data" itemprop="server-software">' . esc_html( $info['software'] ) . '</span>',
+			'position'  => 4,
 			'parent'    => 'lw-hello-server',
 			'meta'      => array(
 				'title' => esc_html__( 'View the current server software.', 'hello-server' ),
