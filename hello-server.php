@@ -1,23 +1,21 @@
 <?php
-
 /**
+ * Plugin Name: Hello Server by Liquid Web
+ * Plugin URI: https://wordpress.org/plugins/hello-server
+ * Description: This is a simple plugin that tells you what server your WordPress is running on. It's super useful for when you run WordPress in a clustered, or mulit-server, environment.
+ * Author: Dan Pock (Liquid Web)
+ * Author URI: https://www.liquidweb.com
+ * Version: 1.2.1
+ * License: GPL-2.0
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
+ * Text Domain: hello-server
+ * Requires WP: 4.4
+ * Domain Path: languages
  * @package Hello_Server
- * @version 1.2.1
  */
-/*
-Plugin Name: Hello Server by Liquid Web
-Plugin URI: https://wordpress.org/plugins/hello-server
-License:           GPL-2.0
-License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
-Author: Dan Pock (Liquid Web)
-Author URI: https://www.liquidweb.com
-Description: This is a simple plugin that tells you what server your WordPress is running on. It's super useful for when you run WordPress in a clustered, or mulit-server, environment.
-Version: 1.2.1
-Text Domain: hello-server
-Domain Path: /languages/
-*/
 
-/*  Copyright (c) 2017 Dan Pock (Liquid Web) <dpock@liquidweb.com>
+/*
+	Copyright (c) 2017 Dan Pock (Liquid Web) <dpock@liquidweb.com>
 
 	All rights reserved.
 	Hello Server by Liquid Web is distributed under the GNU General Public License, Version 2,
@@ -45,74 +43,184 @@ Domain Path: /languages/
  *
  * PHP version 5.6-7.1
  *
- *
- * @package Hello_Server
+ * @package    Hello_Server
+ * @version    1.2.1
  * @author     Dan Pock <dpock@liquidweb.com>
  * @copyright  2017 Liquid Web
  * @license    http://www.gnu.org/licenses/gpl-2.0.txt  GPL-2.0
  * @link       https://github.com/liquidweb/hello-server
  */
 
-function hello_server_get_info() {
-	$info = get_transient('hello_server_info_cache_'.$_SERVER["SERVER_ADDR"]);
-	if (false === $info) {
-		// It wasn't there, so regenerate the data and save the transient
-		$info = [
-			'ip' => get_server_ip(),
-			'hostname' => gethostname()
-		];
-		set_transient('hello_server_info_cache_'.$_SERVER["SERVER_ADDR"], $info, 24 * HOUR_IN_SECONDS);
+
+/**
+ * Load our textdomain for internationalization support.
+ *
+ * @return void
+ */
+function lw_load_plugins_textdomain() {
+	load_plugin_textdomain( 'hello-server', false, dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/' );
+}
+add_action( 'plugins_loaded', 'lw_load_plugins_textdomain' );
+
+/**
+ * Pull our server info for display use.
+ *
+ * @return array $info  The IP and hostname being displayed.
+ */
+function lw_hello_server_get_info() {
+
+	// Bail if we don't have a server address.
+	if ( empty( $_SERVER['SERVER_ADDR'] ) ) {
+		return false;
 	}
-	return $info;
-}
 
-function get_server_ip() {
-	$serverIp =  $_SERVER["SERVER_ADDR"];
-	if ($serverIp === '127.0.0.1') {
-	  $resIp = gethostbyname(gethostname());
-	  if (filter_var($resIp, FILTER_VALIDATE_IP) === true) {
-		  return $resIp;
-	  }
+	// Set our transient key for use later.
+	$k  = 'hello_server_info_cache_' . sanitize_text_field( $_SERVER['SERVER_ADDR'] );
+
+	// If we don't want the cache'd version, delete the transient first.
+	if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+		delete_transient( $k );
 	}
-	return $serverIp;
+
+	// It wasn't there, so regenerate the data and save the transient.
+	if ( false === $data = get_transient( $k )  ) {
+
+		// Set up our array of info.
+		$data   = array(
+			'ip'        => lw_get_server_ip(),
+			'hostname'  => gethostname(),
+		);
+
+		// Store our data in the transient.
+		set_transient( $k, $data, DAY_IN_SECONDS );
+	}
+
+	// Return our array of data.
+	return $data;
 }
 
-// This just echoes the chosen line, we'll position it later
-function hello_server( $wp_admin_bar ) {
-	$serverInfo = hello_server_get_info();
-	$mainNode = [
-	  'id' => 'lw_hello_server',
-	  'title' => __("Hello, Server", "hello-server"),
-	  'meta' => ['title' => __('View the current server info.', "hello-server"), 'class' => 'menupop']
+/**
+ * Get our server IP address by checking various PHP vars.
+ *
+ * @return string
+ */
+function lw_get_server_ip() {
 
-	];
-	$hostNode = [
-	  'id' => 'lw_host_server',
-      'title' => "Hello, I'm: <span itemprop='server-name'>".$serverInfo['hostname'] . "</span>!",
-	  'meta' => ['title' => 'View the current server hostname.'],
-	  'parent' => 'lw_hello_server'
-	];
-	$ipNode = [
-	  'id' => 'lw_server_ip',
-	  'title' => 'My IP is: '.$serverInfo['ip'],
-	  'meta' => ['title' => 'The current servers IP Address.'],
-	  'parent' => 'lw_hello_server'
-	];
-	$wp_admin_bar->add_node( $mainNode );
-	$wp_admin_bar->add_node( $hostNode );
-	$wp_admin_bar->add_node( $ipNode );
+	// Bail if we don't have a server address.
+	if ( empty( $_SERVER['SERVER_ADDR'] ) ) {
+		return false;
+	}
+
+	// Fetch our server address.
+	$server_ip  = sanitize_text_field( $_SERVER['SERVER_ADDR'] );
+
+	// If we're on a local, do some additional checks.
+	if ( '127.0.0.1' === $server_ip ) {
+
+		// Get our hostname data.
+		$res_ip   = gethostbyname( gethostname() );
+
+		// Run a validation check on our IP to make sure it's legit.
+		if ( filter_var( $res_ip, FILTER_VALIDATE_IP ) === true ) {
+			return $res_ip;
+		}
+	}
+
+	// Return our IP.
+	return $server_ip;
 }
 
-// Now we set that function up to execute when the admin_notices action is called
-add_action( 'admin_bar_menu', 'hello_server', 999 );
+/**
+ * Include a small bit of CSS to display and position the icon.
+ *
+ * @return void
+ */
+function lw_add_admin_bar_css() {
 
-// Internationalization Support
-function load_plugins_textdomain()
-{
-	load_plugin_textdomain(
-		'hello-server',
-		false,
-		dirname(dirname(plugin_basename(__FILE__))) . '/languages/'
+	echo '
+	<style>
+
+		li#wp-admin-bar-lw-hello-server {
+			display: block;
+		}
+
+		li#wp-admin-bar-lw-hello-server .ab-item.ab-empty-item .ab-lw-icon {}
+
+		li#wp-admin-bar-lw-hello-server .ab-item.ab-empty-item .ab-lw-icon:before {
+			content: "\f115";
+			top: 2px;
+		}
+
+		li#wp-admin-bar-lw-hello-server .lw-admin-child-menu .ab-item.ab-empty-item span {
+			color: #fff;
+		}
+
+		@media screen and ( max-width: 782px ) {
+
+			li#wp-admin-bar-lw-hello-server {
+				display: block !important;
+			}
+		}
+
+	</style>
+	';
+}
+add_action( 'wp_head', 'lw_add_admin_bar_css' );
+add_action( 'admin_head', 'lw_add_admin_bar_css' );
+
+/**
+ * Display our server info in the admin bar.
+ *
+ * @param  WP_Admin_Bar $wp_admin_bar  The global WP_Admin_Bar object.
+ *
+ * @return void
+ */
+function lw_load_hello_server( WP_Admin_Bar $wp_admin_bar ) {
+
+	// Fetch our server info.
+	$info	= lw_hello_server_get_info();
+
+	// Add a parent item.
+	$wp_admin_bar->add_node(
+		array(
+			'id'    => 'lw-hello-server',
+			'title' => '<span class="ab-icon ab-lw-icon"></span><span class="ab-label ab-lw-label">' . __( 'Hello Server', 'hello-server' ) . '</span>',
+			'meta'  => array(
+				'title' => __( 'View the current server info.', 'hello-server' ),
+				'class' => 'lw-admin-parent-menu',
+			),
+		)
+	);
+
+	// Add the host server info.
+	$wp_admin_bar->add_node(
+		array(
+			'id'        => 'lw-host-server',
+			'title'     => sprintf( __( 'Server Name: %s', 'hello-server' ), '<span itemprop="server-name">' . esc_attr( $info['hostname'] ) . '</span>' ),
+			'position'  => 0,
+			'parent'    => 'lw-hello-server',
+			'meta'      => array(
+				'title' => __( 'View the current server hostname.', 'hello-server' ),
+				'class' => 'lw-admin-child-menu',
+			),
+		)
+	);
+
+	// Add the server IP info.
+	$wp_admin_bar->add_node(
+		array(
+			'id'        => 'lw-ip-address',
+			'title'     => sprintf( __( 'IP Address: %s', 'hello-server' ), '<span itemprop="ip-address">' . esc_attr( $info['ip'] ) . '</span>' ),
+			'position'  => 1,
+			'parent'    => 'lw-hello-server',
+			'meta'      => array(
+				'title' => __( 'View the current server IP address.', 'hello-server' ),
+				'class' => 'lw-admin-child-menu',
+			),
+		)
 	);
 }
-add_action('plugins_loaded', 'load_plugins_textdomain');
+
+// Now we set that function up to execute when the admin_notices action is called.
+add_action( 'admin_bar_menu', 'lw_load_hello_server', 999 );
+
