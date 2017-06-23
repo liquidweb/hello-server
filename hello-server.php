@@ -99,7 +99,7 @@ function lw_hello_server_get_info() {
 			'address'   => lw_get_server_ip(),
 			'software'  => $svsoft,
 			'hostname'  => gethostname(),
-			'phpvers'   => esc_attr( $phpver ),
+			'phpvers'   => $phpver,
 			'dbvers'    => $wpdb->db_version(),
 		);
 
