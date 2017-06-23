@@ -75,24 +75,32 @@ function lw_hello_server_get_info() {
 	}
 
 	// Set our transient key for use later.
-	$k  = 'hello_server_info_cache_' . sanitize_text_field( $_SERVER['SERVER_ADDR'] );
+	$cache_key  = 'hello_server_info_cache_' . sanitize_text_field( wp_unslash( $_SERVER['SERVER_ADDR'] ) );
 
 	// If we don't want the cache'd version, delete the transient first.
 	if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-		delete_transient( $k );
+		wp_cache_delete( $cache_key );
 	}
 
 	// It wasn't there, so regenerate the data and save the transient.
-	if ( false === $data = get_transient( $k )  ) {
+	if ( false === $data = wp_cache_get( $cache_key )  ) {
+
+		// Get our software name with a fallback.
+		$svsoft = ! empty( $_SERVER['SERVER_SOFTWARE'] ) ? sanitize_text_field( wp_unslash( $_SERVER['SERVER_SOFTWARE'] ) ) : __( 'unknown', 'hello-server' );
+
+		// Build my PHP version string.
+		$phpver = absint( PHP_MAJOR_VERSION ) . '.' . absint( PHP_MINOR_VERSION ) . '.' . absint( PHP_RELEASE_VERSION );
 
 		// Set up our array of info.
 		$data   = array(
-			'ip'        => lw_get_server_ip(),
+			'address'   => lw_get_server_ip(),
+			'software'  => $svsoft,
 			'hostname'  => gethostname(),
+			'phpvers'   => esc_attr( $phpver ),
 		);
 
 		// Store our data in the transient.
-		set_transient( $k, $data, DAY_IN_SECONDS );
+		wp_cache_set( $cache_key, $data, '', DAY_IN_SECONDS );
 	}
 
 	// Return our array of data.
@@ -112,7 +120,7 @@ function lw_get_server_ip() {
 	}
 
 	// Fetch our server address.
-	$server_ip  = sanitize_text_field( $_SERVER['SERVER_ADDR'] );
+	$server_ip  = sanitize_text_field( wp_unslash( $_SERVER['SERVER_ADDR'] ) );
 
 	// If we're on a local, do some additional checks.
 	if ( '127.0.0.1' === $server_ip ) {
@@ -137,6 +145,12 @@ function lw_get_server_ip() {
  */
 function lw_add_admin_bar_css() {
 
+	// Bail if current user doesnt have cap.
+	if ( ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+
+	// Echo out the CSS.
 	echo '
 	<style>
 
@@ -151,7 +165,7 @@ function lw_add_admin_bar_css() {
 			top: 2px;
 		}
 
-		li#wp-admin-bar-lw-hello-server .lw-admin-child-menu .ab-item.ab-empty-item span {
+		li#wp-admin-bar-lw-hello-server .lw-admin-child-menu .ab-item.ab-empty-item span.ab-lw-inner-data {
 			color: #fff;
 		}
 
@@ -177,16 +191,23 @@ add_action( 'admin_head', 'lw_add_admin_bar_css' );
  */
 function lw_load_hello_server( WP_Admin_Bar $wp_admin_bar ) {
 
-	// Fetch our server info.
-	$info	= lw_hello_server_get_info();
+	// Bail if current user doesnt have cap.
+	if ( ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+
+	// Fetch our server info, and bail if we have none.
+	if ( false === $info = lw_hello_server_get_info() ) {
+		return;
+	}
 
 	// Add a parent item.
 	$wp_admin_bar->add_node(
 		array(
 			'id'    => 'lw-hello-server',
-			'title' => '<span class="ab-icon ab-lw-icon"></span><span class="ab-label ab-lw-label">' . __( 'Hello Server', 'hello-server' ) . '</span>',
+			'title' => '<span class="ab-icon ab-lw-icon"></span><span class="ab-label ab-lw-label">' . esc_html__( 'Hello Server', 'hello-server' ) . '</span>',
 			'meta'  => array(
-				'title' => __( 'View the current server info.', 'hello-server' ),
+				'title' => esc_html__( 'View the current server info.', 'hello-server' ),
 				'class' => 'lw-admin-parent-menu',
 			),
 		)
@@ -196,11 +217,11 @@ function lw_load_hello_server( WP_Admin_Bar $wp_admin_bar ) {
 	$wp_admin_bar->add_node(
 		array(
 			'id'        => 'lw-host-server',
-			'title'     => sprintf( __( 'Server Name: %s', 'hello-server' ), '<span itemprop="server-name">' . esc_attr( $info['hostname'] ) . '</span>' ),
+			'title'     => '<span class="ab-lw-inner-label">' . esc_html__( 'Hostname: ', 'hello-server' ) . '</span><span class="ab-lw-inner-data" itemprop="server-name">' . esc_html( $info['hostname'] ) . '</span>',
 			'position'  => 0,
 			'parent'    => 'lw-hello-server',
 			'meta'      => array(
-				'title' => __( 'View the current server hostname.', 'hello-server' ),
+				'title' => esc_html__( 'View the current server hostname.', 'hello-server' ),
 				'class' => 'lw-admin-child-menu',
 			),
 		)
@@ -210,11 +231,39 @@ function lw_load_hello_server( WP_Admin_Bar $wp_admin_bar ) {
 	$wp_admin_bar->add_node(
 		array(
 			'id'        => 'lw-ip-address',
-			'title'     => sprintf( __( 'IP Address: %s', 'hello-server' ), '<span itemprop="ip-address">' . esc_attr( $info['ip'] ) . '</span>' ),
+			'title'     => '<span class="ab-lw-inner-label">' . esc_html__( 'IP Address: ', 'hello-server' ) . '</span><span class="ab-lw-inner-data" itemprop="ip-address">' . esc_html( $info['address'] ) . '</span>',
 			'position'  => 1,
 			'parent'    => 'lw-hello-server',
 			'meta'      => array(
-				'title' => __( 'View the current server IP address.', 'hello-server' ),
+				'title' => esc_html__( 'View the current server IP address.', 'hello-server' ),
+				'class' => 'lw-admin-child-menu',
+			),
+		)
+	);
+
+	// Add the PHP software info.
+	$wp_admin_bar->add_node(
+		array(
+			'id'        => 'lw-php-version',
+			'title'     => '<span class="ab-lw-inner-label">' . __( 'PHP Version: ', 'hello-server' ) . '</span><span class="ab-lw-inner-data" itemprop="php-version">' . esc_html( $info['phpvers'] ) . '</span>',
+			'position'  => 2,
+			'parent'    => 'lw-hello-server',
+			'meta'      => array(
+				'title' => esc_html__( 'View the current PHP version.', 'hello-server' ),
+				'class' => 'lw-admin-child-menu',
+			),
+		)
+	);
+
+	// Add the server software info.
+	$wp_admin_bar->add_node(
+		array(
+			'id'        => 'lw-server-software',
+			'title'     => '<span class="ab-lw-inner-label">' . __( 'Software: ', 'hello-server' ) . '</span><span class="ab-lw-inner-data" itemprop="server-software">' . esc_html( $info['software'] ) . '</span>',
+			'position'  => 2,
+			'parent'    => 'lw-hello-server',
+			'meta'      => array(
+				'title' => esc_html__( 'View the current server software.', 'hello-server' ),
 				'class' => 'lw-admin-child-menu',
 			),
 		)
