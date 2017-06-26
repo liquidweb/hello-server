@@ -1,10 +1,10 @@
 # Hello Server by Liquid Web
-Contributors: Liquid Web, liquidwebdan, liquidweb
-Tags: server info, hostname, cluster, clustering, multi-node, webnodes, web-nodes, multi-server
-Requires at least: 3.0
-Tested up to: 4.8.0
-Stable tag: 1.3.0
-License: GPLv2 or later
+Contributors: Liquid Web, liquidwebdan, liquidweb  
+Tags: server info, hostname, cluster, clustering, multi-node, webnodes, web-nodes, multi-server  
+Requires at least: 3.0  
+Tested up to: 4.8.0  
+Stable tag: 1.3.0  
+License: GPLv2 or later  
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 This is a simple plugin that tells you what server your WordPress is running on. It's super useful for when you run WordPress in a clustered, or mulit-server, environment.
