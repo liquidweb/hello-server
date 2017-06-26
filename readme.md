@@ -3,7 +3,7 @@ Contributors: Liquid Web, liquidwebdan, liquidweb
 Tags: server info, hostname, cluster, clustering, multi-node, webnodes, web-nodes, multi-server
 Requires at least: 3.0
 Tested up to: 4.8.0
-Stable tag: 1.2.1
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -53,6 +53,15 @@ Manual Install:
 *   Activate plugin
 
 ## Changelog
+
+### 1.3.0
+
+* LOTS of refactoring and general clean up.
+* Ensure all functions are prefixed with `lw_`
+* Lots of code changes generally summarized by: "More WordPress Style Guide"
+* Regenerate base translation file due to large number of changes.
+* Rebuild and update translations for above changes.
+* Add new LiquidWeb user as author/contributor
 
 ### 1.2.1
 
