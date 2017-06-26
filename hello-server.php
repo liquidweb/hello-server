@@ -221,7 +221,7 @@ function lw_load_hello_server( WP_Admin_Bar $wp_admin_bar ) {
 	$wp_admin_bar->add_node(
 		array(
 			'id'        => 'lw-host-server',
-			'title'     => '<span class="ab-lw-inner-label">' . esc_html__( 'Hostname: ', 'hello-server' ) . '</span><span class="ab-lw-inner-data" itemprop="server-name">' . esc_html( $info['hostname'] ) . '</span>',
+			'title'     => '<span class="ab-lw-inner-label">' . esc_html__( 'Hello, I\'m: ', 'hello-server' ) . '</span><span class="ab-lw-inner-data" itemprop="server-name">' . esc_html( $info['hostname'] ) . '</span>',
 			'position'  => 0,
 			'parent'    => 'lw-hello-server',
 			'meta'      => array(
@@ -290,4 +290,3 @@ function lw_load_hello_server( WP_Admin_Bar $wp_admin_bar ) {
 
 // Now we set that function up to execute when the admin_notices action is called.
 add_action( 'admin_bar_menu', 'lw_load_hello_server', 999 );
-
