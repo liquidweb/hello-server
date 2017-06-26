@@ -1,0 +1,94 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Hello Server by Liquid Web 1.2.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/hello-server\n"
+"POT-Creation-Date: 2017-06-26 15:21+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2017-06-26 15:22+0000\n"
+"Last-Translator: admin <dpock@liquidweb.com>\n"
+"Language-Team: Spanish (Mexico)\n"
+"Language: es-MX\n"
+"Plural-Forms: nplurals=2; plural=n != 1\n"
+"X-Generator: Loco - https://localise.biz/"
+
+#: hello-server.php:224
+msgid "Hello, I'm:"
+msgstr "Hola, soy:"
+
+#: hello-server.php:228
+msgid "View the current server hostname."
+msgstr ""
+
+#: hello-server.php:238
+msgid "IP Address:"
+msgstr ""
+
+#: hello-server.php:242
+msgid "View the current server IP address."
+msgstr ""
+
+#: hello-server.php:252
+msgid "PHP Version:"
+msgstr ""
+
+#: hello-server.php:256
+msgid "View the current PHP version."
+msgstr ""
+
+#: hello-server.php:266
+msgid "DB Version:"
+msgstr ""
+
+#: hello-server.php:280
+msgid "Software:"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://wordpress.org/plugins/hello-server"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Dan Pock (Liquid Web)"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://www.liquidweb.com"
+msgstr ""
+
+#: hello-server.php:270
+#, fuzzy
+msgid "View the current database version."
+msgstr "Ver la versión de base de datos actual."
+
+#: hello-server.php:284
+#, fuzzy
+msgid "View the current server software."
+msgstr "Ver el software del servidor actual."
+
+#: hello-server.php:92
+msgid "unknown"
+msgstr "desconocido"
+
+#: hello-server.php:212
+msgid "Hello Server"
+msgstr "Hola Servidor"
+
+#: hello-server.php:214
+msgid "View the current server info."
+msgstr "Ver la información actual del servidor."
+
+#. Plugin Name of the plugin/theme
+msgid "Hello Server by Liquid Web"
+msgstr "Hola Servidor por Liquid Web"
+
+#. Description of the plugin/theme
+msgid ""
+"This is a simple plugin that tells you what server your WordPress is running "
+"on. It's super useful for when you run WordPress in a clustered, or mulit-"
+"server, environment."
+msgstr ""
+"Este es un simple complemento que le indica en qué servidor se ejecuta su "
+"WordPress. Es muy útil para ejecutar WordPress en un entorno agrupado o "
+"mulit-servidor."

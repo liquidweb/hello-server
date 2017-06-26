@@ -221,7 +221,7 @@ function lw_load_hello_server( WP_Admin_Bar $wp_admin_bar ) {
 	$wp_admin_bar->add_node(
 		array(
 			'id'        => 'lw-host-server',
-			'title'     => '<span class="ab-lw-inner-label">' . esc_html__( 'Hello, I\'m: ', 'hello-server' ) . '</span><span class="ab-lw-inner-data" itemprop="server-name">' . esc_html( $info['hostname'] ) . '</span>',
+			'title'     => '<span class="ab-lw-inner-label">' . esc_html__( "Hello, I'm:", 'hello-server' ) . ' </span><span class="ab-lw-inner-data" itemprop="server-name">' . esc_html( $info['hostname'] ) . '</span>',
 			'position'  => 0,
 			'parent'    => 'lw-hello-server',
 			'meta'      => array(
@@ -235,7 +235,7 @@ function lw_load_hello_server( WP_Admin_Bar $wp_admin_bar ) {
 	$wp_admin_bar->add_node(
 		array(
 			'id'        => 'lw-ip-address',
-			'title'     => '<span class="ab-lw-inner-label">' . esc_html__( 'IP Address: ', 'hello-server' ) . '</span><span class="ab-lw-inner-data" itemprop="ip-address">' . esc_html( $info['address'] ) . '</span>',
+			'title'     => '<span class="ab-lw-inner-label">' . esc_html__( 'IP Address:', 'hello-server' ) . ' </span><span class="ab-lw-inner-data" itemprop="ip-address">' . esc_html( $info['address'] ) . '</span>',
 			'position'  => 1,
 			'parent'    => 'lw-hello-server',
 			'meta'      => array(
@@ -249,7 +249,7 @@ function lw_load_hello_server( WP_Admin_Bar $wp_admin_bar ) {
 	$wp_admin_bar->add_node(
 		array(
 			'id'        => 'lw-php-version',
-			'title'     => '<span class="ab-lw-inner-label">' . esc_html__( 'PHP Version: ', 'hello-server' ) . '</span><span class="ab-lw-inner-data" itemprop="php-version">' . esc_html( $info['phpvers'] ) . '</span>',
+			'title'     => '<span class="ab-lw-inner-label">' . esc_html__( 'PHP Version:', 'hello-server' ) . ' </span><span class="ab-lw-inner-data" itemprop="php-version">' . esc_html( $info['phpvers'] ) . '</span>',
 			'position'  => 2,
 			'parent'    => 'lw-hello-server',
 			'meta'      => array(
@@ -263,7 +263,7 @@ function lw_load_hello_server( WP_Admin_Bar $wp_admin_bar ) {
 	$wp_admin_bar->add_node(
 		array(
 			'id'        => 'lw-database-version',
-			'title'     => '<span class="ab-lw-inner-label">' . esc_html__( 'DB Version: ', 'hello-server' ) . '</span><span class="ab-lw-inner-data" itemprop="database-version">' . esc_html( $info['dbvers'] ) . '</span>',
+			'title'     => '<span class="ab-lw-inner-label">' . esc_html__( 'DB Version:', 'hello-server' ) . ' </span><span class="ab-lw-inner-data" itemprop="database-version">' . esc_html( $info['dbvers'] ) . '</span>',
 			'position'  => 3,
 			'parent'    => 'lw-hello-server',
 			'meta'      => array(
@@ -277,7 +277,7 @@ function lw_load_hello_server( WP_Admin_Bar $wp_admin_bar ) {
 	$wp_admin_bar->add_node(
 		array(
 			'id'        => 'lw-server-software',
-			'title'     => '<span class="ab-lw-inner-label">' . esc_html__( 'Software: ', 'hello-server' ) . '</span><span class="ab-lw-inner-data" itemprop="server-software">' . esc_html( $info['software'] ) . '</span>',
+			'title'     => '<span class="ab-lw-inner-label">' . esc_html__( 'Software:', 'hello-server' ) . ' </span><span class="ab-lw-inner-data" itemprop="server-software">' . esc_html( $info['software'] ) . '</span>',
 			'position'  => 4,
 			'parent'    => 'lw-hello-server',
 			'meta'      => array(
