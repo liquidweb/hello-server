@@ -59,6 +59,7 @@ Manual Install:
 * Update readme information.
 * Add new Screenshots.
 * New plugin images.
+* Rebuild language translations.
 
 ### 1.3.0
 

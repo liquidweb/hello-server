@@ -8,7 +8,7 @@
  * Version: 1.3.1
  * License: GPL-2.0
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain: hello-server
+ * Text Domain: lw-hello-server
  * Requires WP: 4.4
  * Domain Path: languages
  * @package Hello_Server
@@ -58,7 +58,7 @@
  * @return void
  */
 function lw_load_plugins_textdomain() {
-	load_plugin_textdomain( 'hello-server', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+	load_plugin_textdomain( 'lw-hello-server', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 }
 add_action( 'plugins_loaded', 'lw_load_plugins_textdomain' );
 
@@ -89,7 +89,7 @@ function lw_hello_server_get_info() {
 		global $wpdb;
 
 		// Get our software name with a fallback.
-		$svsoft = ! empty( $_SERVER['SERVER_SOFTWARE'] ) ? sanitize_text_field( wp_unslash( $_SERVER['SERVER_SOFTWARE'] ) ) : __( 'unknown', 'hello-server' );
+		$svsoft = ! empty( $_SERVER['SERVER_SOFTWARE'] ) ? sanitize_text_field( wp_unslash( $_SERVER['SERVER_SOFTWARE'] ) ) : __( 'unknown', 'lw-hello-server' );
 
 		// Build my PHP version string.
 		$phpver = absint( PHP_MAJOR_VERSION ) . '.' . absint( PHP_MINOR_VERSION ) . '.' . absint( PHP_RELEASE_VERSION );
@@ -209,9 +209,9 @@ function lw_load_hello_server( WP_Admin_Bar $wp_admin_bar ) {
 	$wp_admin_bar->add_node(
 		array(
 			'id'    => 'lw-hello-server',
-			'title' => '<span class="ab-icon ab-lw-icon"></span><span class="ab-label ab-lw-label">' . esc_html__( 'Hello Server', 'hello-server' ) . '</span>',
+			'title' => '<span class="ab-icon ab-lw-icon"></span><span class="ab-label ab-lw-label">' . esc_html__( 'Hello Server', 'lw-hello-server' ) . '</span>',
 			'meta'  => array(
-				'title' => esc_html__( 'View the current server info.', 'hello-server' ),
+				'title' => esc_html__( 'View the current server info.', 'lw-hello-server' ),
 				'class' => 'lw-admin-parent-menu',
 			),
 		)
@@ -221,11 +221,11 @@ function lw_load_hello_server( WP_Admin_Bar $wp_admin_bar ) {
 	$wp_admin_bar->add_node(
 		array(
 			'id'        => 'lw-host-server',
-			'title'     => '<span class="ab-lw-inner-label">' . esc_html__( "Hello, I'm:", 'hello-server' ) . ' </span><span class="ab-lw-inner-data" itemprop="server-name">' . esc_html( $info['hostname'] ) . '</span>',
+			'title'     => '<span class="ab-lw-inner-label">' . esc_html__( "Hello, I'm:", 'lw-hello-server' ) . ' </span><span class="ab-lw-inner-data" itemprop="server-name">' . esc_html( $info['hostname'] ) . '</span>',
 			'position'  => 0,
 			'parent'    => 'lw-hello-server',
 			'meta'      => array(
-				'title' => esc_html__( 'View the current server hostname.', 'hello-server' ),
+				'title' => esc_html__( 'View the current server hostname.', 'lw-hello-server' ),
 				'class' => 'lw-admin-child-menu',
 			),
 		)
@@ -235,11 +235,11 @@ function lw_load_hello_server( WP_Admin_Bar $wp_admin_bar ) {
 	$wp_admin_bar->add_node(
 		array(
 			'id'        => 'lw-ip-address',
-			'title'     => '<span class="ab-lw-inner-label">' . esc_html__( 'IP Address:', 'hello-server' ) . ' </span><span class="ab-lw-inner-data" itemprop="ip-address">' . esc_html( $info['address'] ) . '</span>',
+			'title'     => '<span class="ab-lw-inner-label">' . esc_html__( 'IP Address:', 'lw-hello-server' ) . ' </span><span class="ab-lw-inner-data" itemprop="ip-address">' . esc_html( $info['address'] ) . '</span>',
 			'position'  => 1,
 			'parent'    => 'lw-hello-server',
 			'meta'      => array(
-				'title' => esc_html__( 'View the current server IP address.', 'hello-server' ),
+				'title' => esc_html__( 'View the current server IP address.', 'lw-hello-server' ),
 				'class' => 'lw-admin-child-menu',
 			),
 		)
@@ -249,11 +249,11 @@ function lw_load_hello_server( WP_Admin_Bar $wp_admin_bar ) {
 	$wp_admin_bar->add_node(
 		array(
 			'id'        => 'lw-php-version',
-			'title'     => '<span class="ab-lw-inner-label">' . esc_html__( 'PHP Version:', 'hello-server' ) . ' </span><span class="ab-lw-inner-data" itemprop="php-version">' . esc_html( $info['phpvers'] ) . '</span>',
+			'title'     => '<span class="ab-lw-inner-label">' . esc_html__( 'PHP Version:', 'lw-hello-server' ) . ' </span><span class="ab-lw-inner-data" itemprop="php-version">' . esc_html( $info['phpvers'] ) . '</span>',
 			'position'  => 2,
 			'parent'    => 'lw-hello-server',
 			'meta'      => array(
-				'title' => esc_html__( 'View the current PHP version.', 'hello-server' ),
+				'title' => esc_html__( 'View the current PHP version.', 'lw-hello-server' ),
 				'class' => 'lw-admin-child-menu',
 			),
 		)
@@ -263,11 +263,11 @@ function lw_load_hello_server( WP_Admin_Bar $wp_admin_bar ) {
 	$wp_admin_bar->add_node(
 		array(
 			'id'        => 'lw-database-version',
-			'title'     => '<span class="ab-lw-inner-label">' . esc_html__( 'DB Version:', 'hello-server' ) . ' </span><span class="ab-lw-inner-data" itemprop="database-version">' . esc_html( $info['dbvers'] ) . '</span>',
+			'title'     => '<span class="ab-lw-inner-label">' . esc_html__( 'DB Version:', 'lw-hello-server' ) . ' </span><span class="ab-lw-inner-data" itemprop="database-version">' . esc_html( $info['dbvers'] ) . '</span>',
 			'position'  => 3,
 			'parent'    => 'lw-hello-server',
 			'meta'      => array(
-				'title' => esc_html__( 'View the current database version.', 'hello-server' ),
+				'title' => esc_html__( 'View the current database version.', 'lw-hello-server' ),
 				'class' => 'lw-admin-child-menu',
 			),
 		)
@@ -277,11 +277,11 @@ function lw_load_hello_server( WP_Admin_Bar $wp_admin_bar ) {
 	$wp_admin_bar->add_node(
 		array(
 			'id'        => 'lw-server-software',
-			'title'     => '<span class="ab-lw-inner-label">' . esc_html__( 'Software:', 'hello-server' ) . ' </span><span class="ab-lw-inner-data" itemprop="server-software">' . esc_html( $info['software'] ) . '</span>',
+			'title'     => '<span class="ab-lw-inner-label">' . esc_html__( 'Software:', 'lw-hello-server' ) . ' </span><span class="ab-lw-inner-data" itemprop="server-software">' . esc_html( $info['software'] ) . '</span>',
 			'position'  => 4,
 			'parent'    => 'lw-hello-server',
 			'meta'      => array(
-				'title' => esc_html__( 'View the current server software.', 'hello-server' ),
+				'title' => esc_html__( 'View the current server software.', 'lw-hello-server' ),
 				'class' => 'lw-admin-child-menu',
 			),
 		)
