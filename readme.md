@@ -1,9 +1,9 @@
 # Hello Server by Liquid Web
-Contributors: Liquid Web, liquidwebdan, liquidweb  
+Contributors: liquidweb, liquidwebdan, norcross, mallardduck  
 Tags: server info, hostname, cluster, clustering, multi-node, webnodes, web-nodes, multi-server  
-Requires at least: 3.0  
-Tested up to: 4.8.0  
-Stable tag: 1.3.0  
+Requires at least: 4.4  
+Tested up to: 4.9.1  
+Stable tag: 1.3.1  
 License: GPLv2 or later  
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,7 +29,7 @@ Hello Server adds a menu-node to the Admin Toolbar that tells you what server yo
 
 1. So what's this do then?
 
-    Basically this plugin will tell you the servers hostname that your WordPress is executing on. This means if you're in a shared environment it will report the shared servers hostname. If you're in a clustered environment then it will report the hostname that handled the request.
+    Basically this plugin will tell you the servers hostname that your WordPress is run on. This means if you're in a shared environment it will report the shared servers hostname. If you're in a clustered environment then it will report the hostname that handled the current request.
 
 2. Is this only useful for Clustered setups?
 
@@ -53,6 +53,12 @@ Manual Install:
 *   Activate plugin
 
 ## Changelog
+
+### 1.3.1
+
+* Update readme information.
+* Add new Screenshots.
+* New plugin images.
 
 ### 1.3.0
 
