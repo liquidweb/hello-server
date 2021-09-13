@@ -9,7 +9,7 @@
  * License: GPL-2.0
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain: lw-hello-server
- * Requires WP: 4.4
+ * Requires WP: 5.0
  * Domain Path: languages
  * @package Hello_Server
  */
@@ -41,7 +41,7 @@
  * web request was processed on. If you run your WordPress in a cluster style
  * setup then this will simplify tracking server requests.
  *
- * PHP version 5.6-7.1
+ * PHP version 7.3
  *
  * @package    Hello_Server
  * @version    1.3.1
