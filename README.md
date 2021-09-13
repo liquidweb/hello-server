@@ -1,8 +1,8 @@
 # Hello Server by Liquid Web
 Contributors: liquidweb, liquidwebdan, norcross, mallardduck  
 Tags: server info, hostname, cluster, clustering, multi-node, webnodes, web-nodes, multi-server  
-Requires at least: 4.4  
-Tested up to: 4.9.1  
+Requires at least: 5.0  
+Tested up to: 5.8.1  
 Stable tag: 1.3.1  
 License: GPLv2 or later  
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
